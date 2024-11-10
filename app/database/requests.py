@@ -59,7 +59,5 @@ async def get_all_tg_ids() -> list[int]:
         return tg_ids
     
 async def get_category_by_id(category_id: int):
-    # Предполагается, что get_categories() возвращает список объектов категорий.
-    # Если вы используете SQLAlchemy, вы можете адаптировать запрос соответственно.
     all_categories = await get_categories()
     return next((cat for cat in all_categories if cat.id == category_id), None)    

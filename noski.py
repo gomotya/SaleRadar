@@ -1,11 +1,10 @@
-import os
 import requests
 from bs4 import BeautifulSoup
 import psycopg2
 import asyncio
 from datetime import datetime
 from bot_instance import bot
-from app.database.requests import get_all_tg_ids 
+from app.database.requests import get_all_tg_ids  
 
 
 
