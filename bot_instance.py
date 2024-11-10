@@ -8,7 +8,7 @@ load_dotenv()
 # Получаем токен
 token = os.getenv('TOKEN')
 if not token:
-    raise ValueError("Токен бота не найден. Проверьте, что он задан в .env файле")
+    raise ValueError("Токен бота не найден.")
 
 # Создаем экземпляр бота
 bot = Bot(token=token)

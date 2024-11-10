@@ -13,7 +13,8 @@ from app.database.requests import get_all_tg_ids
 conn = psycopg2.connect(
     dbname="salesbot",  
     user="postgres",    
-    host="localhost",        
+    host="localhost", 
+    password="1234",      
     port="5432",        
     options="-c client_encoding=UTF8"                            
 )
