@@ -4,7 +4,7 @@ from aiogram.filters import CommandStart, Command
 
 import app.keyboards as kb
 import app.database.requests as rq
-from app.database.requests import get_category_by_id
+from app.database.requests import get_category_by_id, update_random_product_price
 
 
 router = Router()
@@ -17,7 +17,14 @@ async def send_welcome(message: Message):
     #user_id = message.from_user.id
     await message.answer(f'Привет, {message.from_user.full_name}!' , reply_markup=kb.main)
     await message.answer(f"Вас приветствует бот актуальных скидок, в данном чате Вы будете получать сообщения о текущих скидках в интернет-магазинах.\n\n"
-                         f"Для того, чтобы сообщения о скидках начали Вам приходить пожалуйста нажмите на кнопку 'Категории' и выберите на какие категории товаров вас интересуют скидки.")
+                         f"Для того, чтобы сообщения о скидках начали Вам приходить пожалуйста нажмите на кнопку 'Категории' и выберите на какие категории товаров вас интересуют скидки. \n\n"
+                         )
+    
+
+@router.message(Command("start_test"))
+async def for_test(message: Message):
+    await update_random_product_price()
+    
 
 @router.message(F.text == 'Категории')
 async def open_category(message: Message):
@@ -25,7 +32,13 @@ async def open_category(message: Message):
 
 @router.message(F.text == 'О нас')
 async def about_us(message: Message):
-    await message.answer('Мы команда 21-КТ сделали Чат бота отслеживающий скидки')
+    await message.answer(f'Мы команда 21-КТ сделали Чат бота отслеживающий скидки.\n\n\n\n'
+                         f"На данный момент мы обрабатываем следующие категории:\n\n"
+                         f"🧦Носки: kolosstore.ru.\n\n"
+                         f"📱Телефоны: nn.istoreapple.ru, mi-shop.com, svyazon.ru.\n\n"
+                         f"👕Футболки: zarina.ru, printbar.ru, brandshop.ru.\n\n"
+                         f"👟Обувь: sneakerhead.ru, noone.ru, justitalian.ru"
+                         )
 
 @router.message(F.text == 'Мои категории')
 async def write_my_category(message: Message):
